@@ -41,7 +41,7 @@ export function useLiveSensors(intervalMs = 1500) {
       setSensors((current) => Object.fromEntries(sensorDefinitions.map((sensor) => {
         const previous = current[sensor.id]
         const value = nextReading(sensor, previous.value)
-        const history = [...previous.history, { timestamp: updatedAt, value }].slice(-24)
+        const history = [...previous.history, { timestamp: updatedAt, value }].slice(-60)
         return [sensor.id, buildSensor(sensor, value, history, updatedAt)]
       })))
     }, intervalMs)
